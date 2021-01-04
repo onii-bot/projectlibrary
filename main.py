@@ -1,23 +1,34 @@
 import time
 import os
 
+FILENAME = "./data/library.json"
+
 def choices():
     print("1.To Display the books of library")
     print("2.To Lend books from Library")
     print("3.To add books on Library")
     print("4.To return the books")
-    print("Type anything else to quit")
-   
-
+    print("Type anything else to quit")   
 
 class Library:
 
-    def __init__(self, listofbooks):
-        self.listofbooks = listofbooks
+    def __init__(self):
+        pass
+        
+
+    def __temp(self):
+        with open(filename,'r') as f:
+            temp = json.load(f)
+        return temp
 
     def has_library(self):
         print("----------Welcome To the Library Manager-------------\n")
         print("Do You already have a library If you do please Type its Name Else just type n: ")
+        name = input("")
+
+        temp = self.__temp()
+        print(temp)
+        
 
     def open_library(self):
         pass
@@ -37,28 +48,29 @@ class Library:
     def return_book(self):
         pass
 
+aash = Library()
 
+print(aash.has_library())
+# library1 = Library(userlist)
 
-library1 = Library(userlist)
+# choices()
 
-choices()
+# choice = input()
 
-choice = input()
+# if choice == '1':
+#     library1.display_books()
 
-if choice == '1':
-    library1.display_books()
+# elif choice == '2':
+#     library1.lend_books()
 
-elif choice == '2':
-    library1.lend_books()
+# elif choice == '3':
+#     library1.add_books()
 
-elif choice == '3':
-    library1.add_books()
+# elif choice == '4':
+#     library1.return_book()
 
-elif choice == '4':
-    library1.return_book()
-
-else:
-    quit()
+# else:
+#     quit()
 
 
 
