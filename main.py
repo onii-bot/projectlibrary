@@ -28,7 +28,7 @@ class Library:
         name = input("")
 
         temp = self.__temp()
-        print(temp)
+
         
 
     def open_library(self):
