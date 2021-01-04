@@ -1,7 +1,4 @@
-import time
-import os
 import json
-
 FILENAME = "./data/library.json"
 
 def choices():
@@ -11,14 +8,15 @@ def choices():
     print("4.To return the books")
     print("5.Exit")   
 
+
 class Library:
 
     def __init__(self):
         pass    
         
-    def __name___(self):
+    def __name(self):
         print("----------Welcome To the Library Manager-------------\n")
-        print("Do You already have a library If you do please Type its Name Type The Library: ")
+        print("Do You already have a library If you do please Type its Name Else just type n: ")
         name = input("")
 
         return name
@@ -32,46 +30,24 @@ class Library:
         global name
 
         name = self.__name()
+
         temp = self.__temp()
 
         for entry in temp:
             if name == entry['libraryname']:
-                return True       
-
+                return True
     def open_library(self):
-        pass
-       
-
-
-    def display_books(self):
         temp = self.__temp()
 
         for entry in temp:
             if name == entry['libraryname']:
                 books_list = entry['availablebooks']
-
-        # TODO: UNIQ: use this books_list and display it in good way ofc
-
-    def lend_books(self):
-        pass
-
-
-    def add_books(self):
-        pass
-
-
-    def return_book(self):
-        pass
-
+        return books_list
 
 library1 = Library()
 
 if library1.has_library():
-    choices()
+    print(library1.open_library())
 
 else:
-    open_library()
-
-
-
-
+    open_library() 

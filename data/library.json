@@ -5,5 +5,13 @@
 		"availablebooks":["How to be Free","Think Python","Human Mind","Meditations"],
 		"lentbooks":{}
 
+	},
+
+	{
+		"libraryname":"Simple Library",
+		"ownername":"Unique Grg",
+		"availablebooks":["How to be Free","Think Python","Lajja","Automate the boring stuff"],
+		"lentbooks":{}
+
 	}
 ]
