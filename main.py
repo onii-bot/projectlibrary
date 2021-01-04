@@ -15,12 +15,12 @@ class Library:
     def __init__(self, listofbooks):
         self.listofbooks = listofbooks
 
-    def has_library():
+    def has_library(self):
         print("----------Welcome To the Library Manager-------------\n")
         print("Do You already have a library If you do please Type its Name Else just type n: ")
 
-    def open_library():
-        
+    def open_library(self):
+        pass
 
 
     def display_books(self):
