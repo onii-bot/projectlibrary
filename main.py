@@ -1,5 +1,6 @@
 import time
 import os
+import json
 
 FILENAME = "./data/library.json"
 
@@ -17,7 +18,7 @@ class Library:
         
 
     def __temp(self):
-        with open(filename,'r') as f:
+        with open(FILENAME,'r') as f:
             temp = json.load(f)
         return temp
 
