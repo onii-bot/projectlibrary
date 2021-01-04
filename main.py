@@ -16,7 +16,7 @@ class Library:
     def __init__(self):
         pass    
         
-    def __name___(self):
+    def __name(self):
         print("----------Welcome To the Library Manager-------------\n")
         print("Do You already have a library If you do please Type its Name Type The Library: ")
         name = input("")
@@ -49,9 +49,10 @@ class Library:
         for entry in temp:
             if name == entry['libraryname']:
                 books_list = entry['availablebooks']
-
-        # TODO: UNIQ: use this books_list and display it in good way ofc
-
+      
+      # TODO: UNIQ: use this books_list and display it in good way ofc
+        for book in books_list :
+            print(book.rjust(30,' '))
     def lend_books(self):
         pass
 
@@ -67,7 +68,8 @@ class Library:
 library1 = Library()
 
 if library1.has_library():
-    choices()
+    #choices()
+    library1.display_books()
 
 else:
     open_library()
