@@ -1,5 +1,4 @@
 import time
-import os
 import json
 
 FILENAME = "./data/library.json"
@@ -19,7 +18,7 @@ class Library:
     def __name(self):
         print("----------Welcome To the Library Manager-------------\n")
         print("Type the name of the library If the name is already registered it will open else new will be created ")
-        name = input("")
+        name = input("").lower()
 
         return name
 
@@ -30,7 +29,6 @@ class Library:
 
     def has_library(self):
         global name
-
         name = self.__name()
         temp = self.__temp()
 
@@ -43,6 +41,7 @@ class Library:
         temp = self.__temp()
         item_data['libraryname'] = name.lower()
         item_data['ownername'] = input("Name of the owner: ").lower()
+        item_data['lentbooks'] = {}
         books_list = []
         while True:
             book = input("Keep adding books you have and type done to stop: ").title()
@@ -54,8 +53,6 @@ class Library:
         temp.append(item_data)
         with open(FILENAME,'w') as f:
             json.dump(temp,f,indent=4)
-
-       
 
 
     def display_books(self):
@@ -70,7 +67,30 @@ class Library:
 
 
     def lend_books(self):
-        pass
+        temp = self.__temp()
+        new_temp = []
+
+        for entry in temp:
+            if name == entry['libraryname']:
+                lentbooks = entry['lentbooks']
+                availablebooks = entry['availablebooks']
+                book = input("Which Book Do you want to lend: ").title()
+                if book in lentbooks:
+                    print(f"{book} has already been lent by {lentbooks[book]}")
+                    new_temp.append(entry)
+                elif book in availablebooks:
+                    availablebooks.remove(book)
+                    lentbooks[book] = input("Please Enter Your name to lend this book: ")
+                    new_temp.append(entry)
+                else:
+                    print("Sorry This Book isnt available")
+                    new_temp.append(entry)
+            else:
+                new_temp.append(entry)
+        with open(FILENAME,'w') as f:
+            json.dump(new_temp,f,indent=4)
+
+
 
 
     def add_books(self):
@@ -88,25 +108,66 @@ class Library:
                     else:
                         new_books.append(book)
                 books_list = books_list + new_books
-                with open()
+                entry['availablebooks'] = books_list
+                new_temp.append(entry)
             else:
                 new_temp.append(entry)
-
-
+        with open(FILENAME,'w') as f:
+            json.dump(new_temp,f,indent=4)
 
 
     def return_book(self):
-        pass
+        temp = self.__temp()
+        new_temp = []
+
+        for entry in temp:
+            if name == entry['libraryname']:
+                lentbooks = entry['lentbooks']
+                books_list = entry['availablebooks']
+                book = input("Which book do u wish to return: ").title()
+                if book in lentbooks:
+                    print(f"Thanks for returning the book {lentbooks[book]}")
+                    del lentbooks[book]
+                    books_list.append(book)
+                    new_temp.append(entry)
+                else:
+                    print("Sorry you havent lent the book to return")
+                    new_temp.append(entry)
+
+            else:
+                new_temp.append(entry)
+
+        with open(FILENAME,'w') as f:
+            json.dump(new_temp,f,indent=4)
+                
 
 
-library1 = Library()
+if __name__ == "__main__":
+    library1 = Library()
+    while True:
+        if library1.has_library():
+            while True:
+                choices()
+                choice = input("")
+                if choice == "1":
+                    library1.display_books()
+                elif choice == "2":
+                    library1.lend_books()
+                elif choice == "3":
+                    library1.add_books()
+                elif choice == "4":
+                    library1.return_book()
+                elif choice == "5":
+                    break
+                else:
+                    print("Wrong input please check the numbers agaain")
 
-if library1.has_library():
-    #choices()
-    pass
+        else:
+            print("You dont have a library Opening New library...")
+            time.sleep(2.5)
+            library1.open_library()
 
-else:
-    library1.open_library()
+
 
 
 
