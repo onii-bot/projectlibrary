@@ -18,7 +18,7 @@ class Library:
         
     def __name(self):
         print("----------Welcome To the Library Manager-------------\n")
-        print("Do You already have a library If you do please Type its Name Type The Library: ")
+        print("Type the name of the library If the name is already registered it will open else new will be created ")
         name = input("")
 
         return name
@@ -39,7 +39,22 @@ class Library:
                 return True       
 
     def open_library(self):
-        pass
+        item_data = {}
+        temp = self.__temp()
+        item_data['libraryname'] = name.lower()
+        item_data['ownername'] = input("Name of the owner: ").lower()
+        books_list = []
+        while True:
+            book = input("Keep adding books you have and type done to stop: ").title()
+            if book == "Done":
+                break
+            else:
+                books_list.append(book)
+        item_data['availablebooks'] = books_list
+        temp.append(item_data)
+        with open(FILENAME,'w') as f:
+            json.dump(temp,f,indent=4)
+
        
 
 
@@ -50,15 +65,34 @@ class Library:
             if name == entry['libraryname']:
                 books_list = entry['availablebooks']
       
-      # TODO: UNIQ: use this books_list and display it in good way ofc
         for book in books_list :
-            print(book.rjust(30,' '))
+            print(book)
+
+
     def lend_books(self):
         pass
 
 
     def add_books(self):
-        pass
+        temp = self.__temp()
+        new_temp = []
+
+        for entry in temp:
+            if name == entry['libraryname']:
+                books_list = entry['availablebooks']
+                new_books = []
+                while True:
+                    book = input("Keep adding books you have and type done to stop: ").title()
+                    if book == "Done":
+                        break
+                    else:
+                        new_books.append(book)
+                books_list = books_list + new_books
+                with open()
+            else:
+                new_temp.append(entry)
+
+
 
 
     def return_book(self):
@@ -69,10 +103,10 @@ library1 = Library()
 
 if library1.has_library():
     #choices()
-    library1.display_books()
+    pass
 
 else:
-    open_library()
+    library1.open_library()
 
 
 
