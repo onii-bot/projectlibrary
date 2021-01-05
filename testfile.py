@@ -1,53 +1,49 @@
 import json
 FILENAME = "./data/library.json"
 
-def choices():
-    print("1.To Display the books of library")
-    print("2.To Lend books from Library")
-    print("3.To add books on Library")
-    print("4.To return the books")
-    print("5.Exit")   
+def __temp():
+    with open(FILENAME,'r') as f:
+        temp = json.load(f)
+    return temp
 
+def __name():
+    print("----------Welcome To the Library Manager-------------\n")
+    print("Type the name of the library If the name is already registered it will open else new will be created ")
+    name = input("")
 
-class Library:
+    return name
 
-    def __init__(self):
-        pass    
-        
-    def __name(self):
-        print("----------Welcome To the Library Manager-------------\n")
-        print("Do You already have a library If you do please Type its Name Else just type n: ")
-        name = input("")
+def has_library():
+    global name
 
-        return name
+    name = __name()
+    temp = __temp()
 
-    def __temp(self):
-        with open(FILENAME,'r') as f:
-            temp = json.load(f)
-        return temp
+    for entry in temp:
+        if name == entry['libraryname']:
+            return True
 
-    def has_library(self):
-        global name
+def add_books():
+    temp = __temp()
+    has_library()
+    new_temp = []
 
-        name = self.__name()
+    for entry in temp:
+        if name == entry['libraryname']:
+            books_list = entry['availablebooks']
+            new_books = []
+            while True:
+                book = input("Keep adding books you have and type done to stop: ").title()
+                if book == "Done":
+                    break
+                else:
+                        new_books.append(book)
+            books_list = books_list + new_books
+            entry['availablebooks'] = books_list
+            new_temp.append(entry)
+        else:
+            new_temp.append(entry)
+    with open(FILENAME,'w') as f:
+        json.dump(new_temp,f,indent=4)
 
-        temp = self.__temp()
-
-        for entry in temp:
-            if name == entry['libraryname']:
-                return True
-    def open_library(self):
-        temp = self.__temp()
-
-        for entry in temp:
-            if name == entry['libraryname']:
-                books_list = entry['availablebooks']
-        return books_list
-
-library1 = Library()
-
-if library1.has_library():
-    print(library1.open_library())
-
-else:
-    open_library() 
+add_books()

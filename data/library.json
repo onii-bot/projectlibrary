@@ -1,17 +1,20 @@
 [
-	{
-		"libraryname":"Complex Library",
-		"ownername":"Aayush Paudel",
-		"availablebooks":["How to be Free","Think Python","Human Mind","Meditations"],
-		"lentbooks":{}
-
-	},
-
-	{
-		"libraryname":"Simple Library",
-		"ownername":"Unique Grg",
-		"availablebooks":["How to be Free","Think Python","Lajja","Automate the boring stuff"],
-		"lentbooks":{}
-
-	}
+    {
+        "libraryname": "complex library",
+        "ownername": "Aayush Paudel",
+        "availablebooks": [
+            "Think Python",
+            "Meditations",
+            "Added Book1"
+        ],
+        "lentbooks": {"Sumit":"God of War","Unique":"Heavenly Hell"}
+    },
+    {
+        "libraryname": "new libraray",
+        "ownername": "new owner",
+        "availablebooks": [
+            "New Book1",
+            "New Book2"
+        ]
+    }
 ]
