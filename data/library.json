@@ -5,16 +5,33 @@
         "availablebooks": [
             "Think Python",
             "Meditations",
-            "Added Book1"
+            "How To Be Free",
+            "Automate The Boring Stuff",
+            "Kiero"
         ],
-        "lentbooks": {"Sumit":"God of War","Unique":"Heavenly Hell"}
+        "lentbooks": {
+            "God Of War": "Sumit"
+        }
     },
     {
-        "libraryname": "new libraray",
+        "libraryname": "new library",
         "ownername": "new owner",
         "availablebooks": [
             "New Book1",
             "New Book2"
+        ],
+        "lentbooks": {}
+    },
+    {
+        "libraryname": "simple library",
+        "ownername": "unique gurung",
+        "lentbooks": {
+            "Lajja": "Unique"
+        },
+        "availablebooks": [
+            "Death By Procastination",
+            "How To Concentrate",
+            "Think Python"
         ]
     }
 ]
