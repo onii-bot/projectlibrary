@@ -76,14 +76,15 @@ class Library:
                 availablebooks = entry['availablebooks']
                 book = input("Which Book Do you want to lend: ").title()
                 if book in lentbooks:
-                    print(f"{book} has already been lent by {lentbooks[book]}")
+                    print(f"{book} has already been lent by {lentbooks[book]}\n")
                     new_temp.append(entry)
                 elif book in availablebooks:
                     availablebooks.remove(book)
                     lentbooks[book] = input("Please Enter Your name to lend this book: ")
                     new_temp.append(entry)
+                    print("Book Successfully lent \n")
                 else:
-                    print("Sorry This Book isnt available")
+                    print("Sorry This Book isnt available\n")
                     new_temp.append(entry)
             else:
                 new_temp.append(entry)
@@ -104,6 +105,7 @@ class Library:
                 while True:
                     book = input("Keep adding books you have and type done to stop: ").title()
                     if book == "Done":
+                        print("Books Successfully added \n")
                         break
                     else:
                         new_books.append(book)
@@ -139,34 +141,78 @@ class Library:
 
         with open(FILENAME,'w') as f:
             json.dump(new_temp,f,indent=4)
+
+    def display_libraries(self):
+        temp = self.__temp()
+        i = 1
+
+        print("Available Libraries: ")
+
+        for entry in temp:
+            print(f"{i}. {entry['libraryname']}")
+            i += 1
+        print("------------------")
+
+    def remove_library(self):
+        temp = self.__temp()
+        new_temp = []
+
+        library = input("Enter the name of library to remove: ").lower()
+
+        for entry in temp:
+            if library == entry['libraryname']:
+                print(f"{library} Successfully Removed")
+            else:
+                new_temp.append(entry)
+
+        with open(FILENAME,'w') as f:
+            json.dump(new_temp,f,indent=4)
                 
 
 
 if __name__ == "__main__":
     library1 = Library()
     while True:
-        if library1.has_library():
-            while True:
-                choices()
-                choice = input("")
-                if choice == "1":
-                    library1.display_books()
-                elif choice == "2":
-                    library1.lend_books()
-                elif choice == "3":
-                    library1.add_books()
-                elif choice == "4":
-                    library1.return_book()
-                elif choice == "5":
-                    break
-                else:
-                    print("Wrong input please check the numbers agaain")
+        print("1. Display Available Libraries")
+        print("2. Open Library")
+        print("3. Remove Library")
+        print("4. Exit")
+        ans = input("")
+        if ans == "1":
+            library1.display_libraries()
+
+        elif ans == "2":
+            if library1.has_library():
+                while True:
+                    choices()
+                    choice = input("")
+                    if choice == "1":
+                        library1.display_books()
+                    elif choice == "2":
+                        library1.lend_books()
+                    elif choice == "3":
+                        library1.add_books()
+                    elif choice == "4":
+                        library1.return_book()
+                    elif choice == "5":
+                        break
+                    else:
+                        print("Wrong input please check the numbers agaain")
+            else:
+                print("You dont have a library Opening New library...")
+                time.sleep(2.5)
+                library1.open_library()
+
+        elif ans == "3":
+            library1.remove_library()
+
+        elif ans == "4":
+            print("Exiting...")
+            time.sleep(4)
+            break
 
         else:
-            print("You dont have a library Opening New library...")
-            time.sleep(2.5)
-            library1.open_library()
-
+            print("Wrong input")
 
 
 
